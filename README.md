@@ -1,2 +1,0 @@
-# DrawingNoFind
-Private
