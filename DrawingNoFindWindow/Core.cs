@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace DrawingNoFindWindow
 {
-    internal class Core
+    public class Core
     {
         //获取路径
 
@@ -20,6 +20,19 @@ namespace DrawingNoFindWindow
         //对比
 
         //输出结果
+
+        public event EventHandler FinishWriterHandler;
+        public event EventHandler ResultTxtNullHandler;
+        public Core(EventHandler finishWriterHandler, EventHandler resultTxtNullHandler)
+        {
+            FinishWriterHandler += finishWriterHandler;
+            ResultTxtNullHandler += resultTxtNullHandler;
+        }
+        public void RemoveEevent()
+        {
+            FinishWriterHandler -= FinishWriterHandler;
+            ResultTxtNullHandler -= ResultTxtNullHandler;
+        }
         public static List<TxTData> GetDrawingDataList(string[] userInputString)
         {
             List<TxTData> drawingTxTData = new List<TxTData>();
@@ -59,7 +72,7 @@ namespace DrawingNoFindWindow
         /// <param name="fileNames">单独文件名数组</param>
         /// <param name="userInputList">文本集合</param>
         /// <param name="filePathNames">带有完整路径的文件名数组</param>
-        public static void TXTContrastFile( Dictionary<TxTData, List<string>> drawingAndPath, List<TxTData> drawingNullList, string[] fileNames,
+        public static void TXTContrastFile(Dictionary<TxTData, List<string>> drawingAndPath, List<TxTData> drawingNullList, string[] fileNames,
             List<TxTData> userInputList, string[] filePathNames)
         {
             foreach (TxTData drawingString in userInputList)
@@ -111,12 +124,29 @@ namespace DrawingNoFindWindow
         /// </summary>
         /// <param name="drawingAndPath">单一文本与文件路径集合</param>
         /// <param name="drawingNullList">不存在文件路径文本集合</param>
-        public static void ResultToTXT(Dictionary<TxTData, List<string>> drawingAndPath, List<TxTData> drawingNullList, ResultFormEnum resultFormEnum)
+        public void ResultToTXT(Dictionary<TxTData, List<string>> drawingAndPath, List<TxTData> drawingNullList, ResultFormEnum resultFormEnum)
         {
             string drawingResultPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + ((resultFormEnum == ResultFormEnum.TXTVSFILE) ? "\\DrawingTxtVSFileResult.txt" : "\\DrawingFileVSTxtResult.txt");
             File.Create(drawingResultPath).Close();
-            if (!File.Exists(drawingResultPath)) return;
+            if (!File.Exists(drawingResultPath))
+            {
+                ResultTxtNullHandler?.Invoke(this, new EventArgs());
+                return;
+            }
             StreamWriter writer = new StreamWriter(drawingResultPath);
+
+            writer.WriteLine("无文件文本名:");
+            foreach (var item in drawingNullList)
+            {
+                writer.WriteLine(item.Name);
+            }
+            writer.WriteLine("无文件文本数量:" + drawingNullList.Count);
+            writer.WriteLine();
+            writer.WriteLine();
+            writer.WriteLine("-----------------------------------------------------------------------------");
+            writer.WriteLine("---------------------------------明细----------------------------------------");
+            writer.WriteLine("-----------------------------------------------------------------------------");
+            writer.WriteLine();
             foreach (var item in drawingAndPath.Keys)
             {
                 writer.WriteLine(item.Name);
@@ -124,20 +154,25 @@ namespace DrawingNoFindWindow
                 {
                     writer.WriteLine(dr);
                 }
-                writer.WriteLine(item.Name + "相同文件数量:" + drawingAndPath[item].Count);
+                writer.WriteLine(item.Name + " 相同文件数量:" + drawingAndPath[item].Count);
                 writer.WriteLine();
                 writer.WriteLine();
             }
-            writer.WriteLine("无文件文本名:");
-            foreach (var item in drawingNullList)
-            {
-                writer.WriteLine(item.Name);
-            }
-            writer.WriteLine("无文件文本数量:" + drawingNullList.Count);
             writer.Close();
+            Thread.Sleep(1);
+            try
+            {
+                writer.WriteLine();
+                writer.Close();
+            }
+            catch (Exception)
+            {
+                FinishWriterHandler?.Invoke(this, new EventArgs());
+
+            }
         }
     }
-    internal class TxTData
+    public class TxTData
     {
         public string Name { get; set; }
         public int Index { get; set; }
@@ -147,7 +182,7 @@ namespace DrawingNoFindWindow
             Index = index;
         }
     }
-    internal enum ResultFormEnum
+    public enum ResultFormEnum
     {
         TXTVSFILE,
         FILEVSTXT
