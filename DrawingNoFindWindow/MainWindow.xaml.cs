@@ -22,7 +22,6 @@ namespace DrawingNoFindWindow
         private string[] filePathNames;
         private string[] fileNames;
         private List<TxTData> userInputList;
-        public Core core;
         
 
         public MainWindow()
@@ -34,17 +33,6 @@ namespace DrawingNoFindWindow
         {
             Button_TXTVsFile.IsEnabled = false;
             Button_FileVsTXT.IsEnabled = false;
-            core = new Core(FinishWriterHandler,ResultTxtNullHandler);
-        }
-
-        private void ResultTxtNullHandler(object? sender, EventArgs e)
-        {
-            MessageBox.Show("创建结果文件失败。");
-        }
-
-        public void FinishWriterHandler(object? sender, EventArgs e) 
-        {
-            MessageBox.Show("完成");
         }
 
         private void TextBox_txtData_TextChanged(object sender, TextChangedEventArgs e)
@@ -72,7 +60,7 @@ namespace DrawingNoFindWindow
             List<TxTData> drawingNullList = new List<TxTData>();
             Dictionary<TxTData, List<string>> drawingAndPath = new Dictionary<TxTData, List<string>>();
             Core.TXTContrastFile(drawingAndPath, drawingNullList, fileNames, userInputList, filePathNames);
-            core.ResultToTXT(drawingAndPath, drawingNullList, ResultFormEnum.TXTVSFILE);
+            Core.ResultToTXT(drawingAndPath, drawingNullList, ResultFormEnum.TXTVSFILE);
         }
 
         private void Button_FileVsTXT_Click(object sender, RoutedEventArgs e)
@@ -81,7 +69,7 @@ namespace DrawingNoFindWindow
             List<TxTData> drawingNullList = new List<TxTData>();
             Dictionary<TxTData, List<string>> drawingAndPath = new Dictionary<TxTData, List<string>>();
             Core.FileContrastTXT(drawingAndPath, drawingNullList, fileNames, userInputList, filePathNames);
-            core.ResultToTXT(drawingAndPath, drawingNullList, ResultFormEnum.FILEVSTXT);
+            Core.ResultToTXT(drawingAndPath, drawingNullList, ResultFormEnum.FILEVSTXT);
         }
 
         private void Button_IsPath_Click(object sender, RoutedEventArgs e)

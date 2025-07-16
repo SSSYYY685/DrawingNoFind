@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DrawingNoFindWindow")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b95aa8d5d0ed712e914b38efa749ab9631100b72")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07e5ed85028b3b9c2493ce8b716bf33d117e80e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("DrawingNoFindWindow")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DrawingNoFindWindow")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.0.0.0")]
