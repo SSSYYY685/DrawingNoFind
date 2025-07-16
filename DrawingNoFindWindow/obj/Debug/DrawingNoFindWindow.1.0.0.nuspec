@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>DrawingNoFindWindow</id>
+    <version>1.0.0</version>
+    <authors>DrawingNoFindWindow</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net8.0-windows7.0" />
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net8.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <files include="any/net8.0-windows7.0/ic.ico" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFindWindow\bin\Debug\net8.0-windows\DrawingNoFindWindow.runtimeconfig.json" target="lib\net8.0-windows7.0\DrawingNoFindWindow.runtimeconfig.json" />
+    <file src="C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFindWindow\bin\Debug\net8.0-windows\DrawingNoFindWindow.dll" target="lib\net8.0-windows7.0\DrawingNoFindWindow.dll" />
+    <file src="C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFindWindow\ic.ico" target="content\ic.ico" />
+    <file src="C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFindWindow\ic.ico" target="contentFiles\any\net8.0-windows7.0\ic.ico" />
+    <file src="C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFindWindow\ic.ico" target="\ic.ico" />
+  </files>
+</package>
