@@ -1,0 +1,7 @@
+C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFind\bin\Release\DrawingNoFind.exe.config
+C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFind\bin\Release\DrawingNoFind.exe
+C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFind\bin\Release\DrawingNoFind.pdb
+C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFind\obj\Release\DrawingNoFind.csproj.AssemblyReference.cache
+C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFind\obj\Release\DrawingNoFind.csproj.CoreCompileInputs.cache
+C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFind\obj\Release\DrawingNoFind.exe
+C:\Users\World\Desktop\Myproject\SSSYYY685\DrawingNoFind\obj\Release\DrawingNoFind.pdb
